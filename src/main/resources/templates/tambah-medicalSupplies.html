@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Tambah Medical Supplies</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	
+	<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+		<h2>Tambah Medical Supplies</h2>
+		<form th:action="@{/medical-supplies/tambah}" th:object="${medicalSupplies}" method = "POST">
+			<input type="hidden" th:field="*{id}">
+				<div class="row">
+					<div class="col-lg-2">Nama</div>
+					<div class="col-lg-2">
+						<input type = "text" name="nama"/>
+					</div>
+				</div>
+				<p>
+				<div class="row">
+					<div class="col-lg-2">Harga</div>
+					<div class="col-lg-2">
+						<input type = "text" name="price" />
+					</div>
+				</div>
+				<p>
+				<div class="row">
+					<div class="col-lg-2">Deskripsi</div>
+					<div class="col-lg-2">
+						<input type = "text" name="deskripsi"/>
+					</div>
+				</div>
+				<p>
+				<div class="row">
+					<div class="col-lg-2">Jenis</div>
+					<div class="col-lg-2">
+						<select name="jenisMedicalSupplies" id="jenisMedicalSupplies">
+					       <option disabled="disabled" selected="selected" >Pilih Jenis Medical Supplies</option>
+						      <span th:each="jenisMedicalSupplies : ${listJenisMedicalSupplies}">
+						      	<option th:value="${jenisMedicalSupplies.id}" th:text="${jenisMedicalSupplies.jenis_medical_supplies}" ></option>
+						      </span>
+						</select>
+					</div>
+				</div> 
+			<button onclick = "myFunction()" type="submit">Submit</button>
+		</form>
+	</body>
+	<script>
+		function myFunction() {
+		    alert("Medical supplies telah ditambahkan");
+		}
+	</script>
+</html>
